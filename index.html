@@ -134,7 +134,7 @@ needs.hunger=Math.min(needs.hunger,16);
   }
  }else if(dist>.75){
   delta.normalize();
-  const desired=Math.atan2(delta.x,delta.z);
+  const desired=Math.atan2(delta.x,delta.z)+Math.PI;
   let angle=((desired-crow.rotation.y+Math.PI*3)%(Math.PI*2))-Math.PI;
   crow.rotation.y+=THREE.MathUtils.clamp(angle,-dt*2.3,dt*2.3);
   pos.x+=delta.x*speed*dt;pos.z+=delta.z*speed*dt;
