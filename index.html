@@ -89,7 +89,8 @@ function updateNeeds(dt){
  if(mode==='rest')needs.energy=Math.min(100,needs.energy+dt*5);
  if(mode==='drinking')needs.thirst=Math.max(0,needs.thirst-dt*22);
  if(mode==='eating')needs.hunger=Math.max(0,needs.hunger-dt*18);
-}
+drinkCooldown=Math.max(0,drinkCooldown-dt);
+ foodCooldown=Math.max(0,foodCooldown-dt);}
 function moveRook(dt,t){
  modeTime-=dt;
  const pos=crow.position;
@@ -110,6 +111,8 @@ function moveRook(dt,t){
   if(modeTime<=0){
    torso.rotation.x=0;
    if(mode==='drinking'){
+   drinkCooldown=105;
+    needs.thirst=Math.min(needs.thirst,16);
     journal('Had a drink','Rook spent time drinking at the stream. His thirst was replenished.');
     thought='A refreshing drink. Much better.';
     setPlan('Explore again','Thirst is satisfied; choose the next useful activity','I feel refreshed. I can explore again.');
@@ -120,6 +123,8 @@ function moveRook(dt,t){
      saved.memories.foodSuccess.unshift(memory);saved.memories.foodSuccess=saved.memories.foodSuccess.slice(0,30);
      remember('Food found at '+memory.x+', '+memory.z,'food','Rook found and ate food here. He can use this memory to guide future searches.');
     }
+        foodCooldown=120;
+needs.hunger=Math.min(needs.hunger,16);
     journal('Finished eating','Rook finished eating. His hunger has been reduced.');
     thought='That was a good find. I should remember this place.';
     setPlan('Explore again','Hunger is lower; choose the next useful activity','I have eaten. Time to see what else is around.');
