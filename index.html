@@ -82,12 +82,12 @@ function chooseGoal(){const roll=Math.random();if(needs.energy<22){mode='rest';g
 chooseGoal();
 function updateNeeds(dt){
  needs.curiosity=Math.min(100,needs.curiosity+dt*1.6);
- needs.hunger=Math.min(100,needs.hunger+dt*.7);
- needs.thirst=Math.min(100,needs.thirst+dt*.9);
+ needs.hunger=Math.min(100,needs.hunger+dt*.16);
+ needs.thirst=Math.min(100,needs.thirst+dt*.13);
  needs.energy=Math.max(0,needs.energy-dt*(mode==='fly'?.75:.25));
  if(mode==='rest')needs.energy=Math.min(100,needs.energy+dt*5);
- if(mode==='drinking')needs.thirst=Math.max(0,needs.thirst-dt*20);
- if(mode==='eating')needs.hunger=Math.max(0,needs.hunger-dt*14);
+ if(mode==='drinking')needs.thirst=Math.max(0,needs.thirst-dt*22);
+ if(mode==='eating')needs.hunger=Math.max(0,needs.hunger-dt*18);
 }
 function moveRook(dt,t){
  modeTime-=dt;
