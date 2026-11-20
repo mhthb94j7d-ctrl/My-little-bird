@@ -69,6 +69,7 @@ const perches=[];for(const p of treeSpots.slice(0,45)){const branch=part(new THR
 const needs={curiosity:78,hunger:24,thirst:18,energy:86};let mode='explore',goal=new THREE.Vector3(8,0,-7),modeTime=0,discoveries=0,follow=true,callUntil=0,wingPhase=0,walkPhase=0,activeFood=null;
 let drinkCooldown=0,foodCooldown=0;
 let thought='A new day, and plenty to investigate.';
+ let intention='Explore the woodland';let plan='Look around and investigate interesting places';let relationshipCalls=0;let lastLoggedMode='';let lastDecision='';
 const STORAGE_KEY='rooks-world-memory-v1';let saved={journal:[],discoveries:[],memories:{foodSuccess:[],foodFailures:[]},relationship:{calls:0,firstSeen:new Date().toISOString()}};
 try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const parsed=JSON.parse(raw);saved={...saved,...parsed,memories:{...saved.memories,...(parsed.memories||{})},relationship:{...saved.relationship,...(parsed.relationship||{})}}}}catch(e){}
 function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(saved))}catch(e){}}
